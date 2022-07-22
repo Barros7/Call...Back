@@ -51,10 +51,10 @@ class App {
 
     this.app.use(
       cors({
-        origin: "*",
+        origin: this.corsWhitelist,
         credentials: true,
         allowedHeaders: "Content-Type, Accept, Origin, Timestamp",
-        preflightContinue: true,
+        preflightContinue: false,
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       })
     );
