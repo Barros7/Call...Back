@@ -10,7 +10,7 @@
     "test": "jest",
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
     "build": "tsc",
-    "start:prod": "ts-node src/index.js"
+    "start:prod": "ts-node src/index.ts"
   },
   "dependencies": {
     "@prisma/client": "^4.1.0",
