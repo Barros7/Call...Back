@@ -19,6 +19,7 @@ export interface IUpdateUser {
   name?: string;
   deleted?: "true" | "false";
   surname?: string;
+  logged?: boolean;
 }
 
 export interface IFindUser {
@@ -70,7 +71,7 @@ class UserPostgreRepository {
     return await prisma.user.findMany({
       where: {
         deleted: false,
-        role: Role.Funcionario,
+      
       },
       include: {
         images: true,

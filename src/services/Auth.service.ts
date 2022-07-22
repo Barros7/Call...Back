@@ -66,6 +66,8 @@ class AuthService {
       secure: process.env.NODE_ENV === "production",
     });
 
+    await UserPostgre.update(bodyToken.id, {logged: true});
+
     return { token };
   }
 
@@ -78,6 +80,8 @@ class AuthService {
     });
 
     res.clearCookie("authorization");
+
+    await UserPostgre.update(userInReq.id, {logged: false});
 
     return true;
   }
