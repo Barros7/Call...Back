@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
-    "build": "tsc"
+    "build": "tsc",
+    "start:prod": "node dist/main",
+    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
     "@prisma/client": "^4.1.0",
