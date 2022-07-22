@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Image {
+  id   Int       @id() @default(autoincrement())
+  path String    @unique
+  type ImageType @default(Perfil)
+
+  user    User @relation(fields: [user_id], references: [id])
+  user_id Int
+}
+
+model Clock {
+  id   Int       @id() @default(autoincrement())
+  type ClockType
+  time DateTime  @default(now()) @db.Timestamp
+
+  user    User @relation(fields: [user_id], references: [id])
+  user_id Int
+}
+
+model User {
+  id       Int     @id() @default(autoincrement())
+  email    String  @unique @db.VarChar(255)
+  password String  @db.VarChar(80)
+  role     Role    @default(Funcionario)
+  name     String  @db.VarChar(255)
+  surname  String  @db.VarChar(255)
+  pin      String? @db.VarChar(255)
+  logged   Boolean @default(false)
+  deleted  Boolean @default(false)
+
+  images Image[]
+  clocks Clock[]
+}
+
+enum ClockType {
+  Entrada
+  Saida
+}
+
+enum ImageType {
+  Perfil
+  Documento
+}
+
+enum Role {
+  Funcionario
+  Administrador
+}
