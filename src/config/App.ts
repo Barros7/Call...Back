@@ -54,7 +54,7 @@ class App {
         origin: "*",
         credentials: true,
         allowedHeaders: "Content-Type, Accept, Origin, Timestamp",
-        preflightContinue: false,
+        preflightContinue: true,
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       })
     );
